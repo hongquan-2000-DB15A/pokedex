@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div class="form-group col-xs-12 col-sm-12">
+        <button id="PreButton" onclick="preFetchPokemon();">Pre</button>
+        <button id="NextButton" onclick="nextFetchPokemon();">Next</button>
+    </div>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quick's Pokedex</title>
+    <link rel="stylesheet" href="pokedex.css" />
+    <link
+            href="https://fonts.googleapis.com/css?family=Rubik&display=swap"
+            rel="stylesheet"
+    />
+    <form>
+        <label>
+            <input type="text" placeholder="Search the Pokemons..." />
+        </label>
+        <input type="submit" value="Tìm" />
+    </form>
+</head>
+<body>
+<div class="container">
+    <h1>Quick's Pokedex</h1>
+    <ul id="pokedex"></ul>
+
+
+    <ul id="pokedexb"></ul>
+</div>
+<script src="pokedex.js"></script>
+</body>
+</html>
