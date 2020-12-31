@@ -91,7 +91,7 @@ form input {
 }
 
 
-#PreButton
+.PrevButton
 {
     margin-left: 121px;
     margin-top: 1px;
@@ -103,7 +103,7 @@ form input {
     font-size:14px;
     font-weight:700;
 }
-#NextButton
+.NextButton
 {
     margin-left: 1400px;
     margin-top: 1px;
