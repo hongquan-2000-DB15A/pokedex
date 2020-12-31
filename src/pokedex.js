@@ -132,6 +132,7 @@ if(i>=0)
   `;
 
     console.log(pokemonButton);
+    
     pokemonButton.innerHTML = '<button class="PrevButton" onclick="getPrevPokemon();">Prev</button>\n' +
         '        <button class="NextButton" onclick="getNextPokemon();">Next</button>';
     pokedexb.innerHTML = '<button class="Back" onclick="FetchPokemon(currentLink)">back pokedex</button>'
