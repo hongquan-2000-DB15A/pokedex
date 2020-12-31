@@ -2,15 +2,16 @@ const pokedex = document.getElementById('pokedex');
 const pokedexb = document.getElementById('pokedexb');
 const formEl = document.querySelector("form");
 const inputEl = document.querySelector("input[type=text]");
+const pokemonButton = document.getElementById('pokedexButton');
 
-var nextLink, previousLink, currentLink;
+var nextLink, previousLink, currentLink, currentIdPokemon;
 
 function nextFetchPokemon() {
 
     //console.log(`next link:${nextLink}`);
     FetchPokemon(nextLink);
 }
-function preFetchPokemon() {
+function prevFetchPokemon() {
 
     //console.log(`prev link:${previousLink}`);
     FetchPokemon(previousLink);
@@ -35,7 +36,7 @@ const LookupServer = () =>
 
 const FetchPokemon = (link) => {
     const promises = [];
-
+    pokedexb.innerHTML="";
     currentLink = link;
     console.log(link);
     if (link !== null)
@@ -85,18 +86,32 @@ const displayPokemon = (pokemon) => {
         )
         .join('');
     pokedex.innerHTML = pokemonHTMLString;
-
+pokemonButton.innerHTML = `<button class="PrevButton" onclick="prevFetchPokemon();">Pre</button>
+                            <button class="NextButton" onclick="nextFetchPokemon();">Next</button>`;
 };
 
 
 
-async function getPokemon(i) {
+async function getNextPokemon(i)
+{
+    getPokemon(currentIdPokemon + 1);
+}
+async function getPrevPokemon(i)
+{
+    getPokemon(currentIdPokemon - 1);
+}
 
+async function getPokemon(i)
+{
+
+    currentIdPokemon = i;
 
     pokedex.innerHTML = "";
     // console.log(`Get function here ${i}`);
     //console.log(currentLink);
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+   /* const res_next = await fetch(`https://pokeapi.co/api/v2/pokemon/${i+1}`);
+    const res_pre = await fetch(`https://pokeapi.co/api/v2/pokemon/${i-1}`);*/
     const pokemon = await res.json(), pokemonEl = document.createElement("div");
     pokemonEl.classList.add("pokemon");
 
@@ -105,7 +120,7 @@ async function getPokemon(i) {
       <img src="https://pokeres.bastionbot.org/images/pokemon/${
         pokemon.id
     }.png" width="200" alt="">
-
+<h2>${pokemon.name}</h2>
     </div>
 
     <div id="stats">
@@ -116,6 +131,10 @@ async function getPokemon(i) {
         .join("")}
     </div>
   `;
+
+    console.log(pokemonButton);
+    pokemonButton.innerHTML = '<button class="PrevButton" onclick="getPrevPokemon();">Pre</button>\n' +
+        '        <button class="NextButton" onclick="getNextPokemon();">Next</button>';
     pokedexb.innerHTML = '<button class="Back" onclick="FetchPokemon(currentLink)">back pokedex</button>'
     pokedex.appendChild(pokemonEl);
 
